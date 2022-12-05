@@ -32,6 +32,7 @@ AND salaries.to_date < curdate()
 GROUP BY departments.dept_name;
 
 
+
 # Warm-up 11-22-2022
 ## Retrieve the salary of the second highest paid current employee
 
@@ -41,3 +42,12 @@ SELECT salary
 FROM salaries
 WHERE to_date > curdate()
 ORDER BY salary DESC limit 1,1;
+
+# Warm-up 12-05-2022
+# Write a query to find the unique last names with a 'q' but not 'qu'.
+
+USE employees;
+
+SELECT distinct(last_name)
+FROM employees
+Where last_name like'%Q%' and last_name not like '%Qu%'
