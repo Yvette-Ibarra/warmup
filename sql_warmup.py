@@ -51,3 +51,13 @@ USE employees;
 SELECT distinct(last_name)
 FROM employees
 Where last_name like'%Q%' and last_name not like '%Qu%'
+
+
+# Warm-up 01-09-2023
+#  Using the employees DB, give me the last name and count of employees that have a last name that starts with SH and ends with Z
+
+USE employees;
+SELECT last_name, COUNT(last_name) AS 'numbers_of_emp'
+FROM employees
+WHERE last_name LIKE 'sh%z'
+GROUP BY last_name
