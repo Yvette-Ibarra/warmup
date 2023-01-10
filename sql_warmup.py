@@ -61,3 +61,21 @@ SELECT last_name, COUNT(last_name) AS 'numbers_of_emp'
 FROM employees
 WHERE last_name LIKE 'sh%z'
 GROUP BY last_name
+
+# Warm-up 1-10-2023
+#-- Using the farmers market - Create a new column based off of cost_to_customer_per_qty.
+#-- If the cost was less than or equal to 1 label them as Cheap
+#-- If the cost was greater than 1 but less than 5 label them as Mid-range
+#-- If the cost was greater than or equal to 5 label them as High-end
+
+
+USE farmers_market;
+
+SELECT *,
+	CASE
+       WHEN cost_to_customer_per_qty <= 1 THEN 'cheap'
+       WHEN cost_to_customer_per_qty  <5 THEN 'mid-range'
+       WHEN cost_to_customer_per_qty >=5 THEN 'high-end'
+   END AS price_category
+FROM customer_purchases
+ORDER BY cost_to_customer_per_qty;
