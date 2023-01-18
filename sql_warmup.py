@@ -79,3 +79,24 @@ SELECT *,
    END AS price_category
 FROM customer_purchases
 ORDER BY cost_to_customer_per_qty;
+
+
+# Warm-up 1-18-2023
+#--  What is the current average salary for each of the following department
+#-- groups: R&D, Sales & Marketing, Prod & QM, Finance & HR, Customer Service?
+
+USE employees;
+
+SELECT 
+	CASE
+		When d.dept_name in ('Research', 'Development')Then 'R&D'
+        When d.dept_name in ('Sales', 'Marketing')Then 'Sales 7 Marketing'
+        When d.dept_name in ('Production', 'Quality Management')Then 'Prod % QM'
+        When d.dept_name in ('Fincnace', 'Human Resources')Then 'Rfiance & HR'
+        WHEN d.dept_name in ('Customer Service') Then 'CS'
+	END AS dept_group, AVG(salary)
+FROM departments as d
+JOIN dept_emp de USING(dept_no)
+JOIN salaries s USING(emp_no)
+WHERE s.to_Date > NOW() and de.to_date > NOW()
+GROUP By dept_group
